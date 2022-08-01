@@ -4,16 +4,20 @@ fetch(
   "https://api.github.com/repos/anjannair/scripts/git/trees/main?recursive=1"
 )
   .then(function (response) {
-    // The API call was successful!
-    response.forEach((element) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return Promise.reject(response);
+    }
+  })
+  .then(function (data) {
+    data.tree.forEach((element) => {
       if (element.path.startsWith("src/")) {
-        final += `<li><a href="${element.path}">${element.path}</a></li>`;
+        final += `<li><a href="${element.path}">${element.path}</a></li>` + "\n";
       }
     });
+    write.innerHTML = final;
   })
   .catch(function (err) {
-    // There was an error
     console.warn("Something went wrong.", err);
   });
-
-write.innerHTML = final;
