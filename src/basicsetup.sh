@@ -16,34 +16,34 @@ checkApplications() {
     else
         echo -e "${CROSS} NVM is not installed"
         echo -e "${INFO} Installing NVM"
-        wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash >/dev/null 2>&1
+        wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash 
         echo -e "${DONE}"
     fi
 
     echo -e "${INFO} Installing Node"
-    nvm install node >/dev/null 2>&1
+    nvm install node 
     echo -e "${DONE}"
 
     echo -e "${INFO} Installing Visual Studio Code"
-    sudo apt-get install wget gpg >/dev/null 2>&1
+    sudo apt-get install wget gpg 
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
-    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings >/dev/null 2>&1
+    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings 
     sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
     rm -f packages.microsoft.gpg
-    sudo apt-get install apt-transport-https >/dev/null 2>&1
-    sudo apt-get update >/dev/null 2>&1
-    sudo apt-get install code >/dev/null 2>&1
+    sudo apt-get install apt-transport-https 
+    sudo apt-get update 
+    sudo apt-get install code 
     echo -e "${DONE}"
 
     echo -e "${INFO} Installing Discord"
     wget -qO- https://discordapp.com/api/download?platform=linux &
-    format=deb | sudo apt-get install -y -qq >/dev/null 2>&1
+    format=deb | sudo apt-get install -y -qq 
     echo -e "${DONE}"
 
     echo -e "${INFO} Installing Spotify"
-    curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - >/dev/null 2>&1
-    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list >/dev/null 2>&1
-    sudo apt-get update && sudo apt-get install spotify-client >/dev/null 2>&1
+    curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list 
+    sudo apt-get update && sudo apt-get install spotify-client 
     echo -e "${DONE}"
 
     echo -e "${INFO} Modifying Spotify to add ad-blocker"
@@ -52,20 +52,20 @@ checkApplications() {
     else
         echo -e "${CROSS} make is not installed"
         echo -e "${INFO} Installing make"
-        sudo apt-get install build-essential >/dev/null 2>&1
+        sudo apt-get install build-essential 
         echo -e "${DONE}"
     fi
     echo -e "${INFO} Checking curl installation...${OVER}"
-    which curl &>/dev/null || sudo apt install curl -y >/dev/null 2>&1
+    which curl &>/dev/null || sudo apt install curl -y 
     echo -e "${TICK} Curl is installed!"
     echo -e "${INFO} Installing Rust"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh >/dev/null 2>&1
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
     echo -e "${DONE}"
     echo -e "${INFO} Cloning Adblock repository"
-    git clone https://github.com/abba23/spotify-adblock.git >/dev/null 2>&1
-    cd spotify-adblock >/dev/null 2>&1
-    make >/dev/null 2>&1
-    sudo make install >/dev/null 2>&1
+    git clone https://github.com/abba23/spotify-adblock.git 
+    cd spotify-adblock 
+    make 
+    sudo make install 
     cd ~/.local/share/applications
     echo "  [Desktop Entry]
   Type=Application
@@ -82,8 +82,8 @@ checkApplications() {
     cd ~
     echo -e "${DONE}"
     echo -e "${INFO} Installing Veracrypt v1.25.9...${OVER}"
-    wget https://launchpad.net/veracrypt/trunk/1.25.9/+download/veracrypt-1.25.9-Ubuntu-22.04-amd64.deb >/dev/null 2>&1
-    sudo dpkg -i veracrypt-1.25.9-Ubuntu-22.04-amd64.deb >/dev/null 2>&1
+    wget https://launchpad.net/veracrypt/trunk/1.25.9/+download/veracrypt-1.25.9-Ubuntu-22.04-amd64.deb 
+    sudo dpkg -i veracrypt-1.25.9-Ubuntu-22.04-amd64.deb 
     echo -e "${DONE}"
 
 }
@@ -108,8 +108,8 @@ main() {
 
     # Update the system
     printf "  %b %bUpdating system...%b\\n" "${INFO}" "${COL_LIGHT_GREEN}" "${COL_NC}"
-    sudo apt-get update -y >/dev/null 2>&1
-    sudo apt-get upgrade -y >/dev/null 2>&1
+    sudo apt-get update -y 
+    sudo apt-get upgrade -y 
     printf "  %b %bSystem updated%b\\n" "${TICK}" "${COL_LIGHT_GREEN}" "${COL_NC}"
 }
 
