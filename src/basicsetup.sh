@@ -80,6 +80,11 @@ checkApplications() {
   StartupWMClass=spotify
 " >>spotify-adblock.desktop
     cd ~
+    echo -e "${DONE}"
+    echo -e "${INFO} Installing Veracrypt v1.25.9...${OVER}"
+    wget https://launchpad.net/veracrypt/trunk/1.25.9/+download/veracrypt-1.25.9-Ubuntu-22.04-amd64.deb >/dev/null 2>&1
+    sudo dpkg -i veracrypt-1.25.9-Ubuntu-22.04-amd64.deb >/dev/null 2>&1
+    echo -e "${DONE}"
 
 }
 
